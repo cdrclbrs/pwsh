@@ -203,7 +203,7 @@ $bmp.Save($filename)
 
 echo $hiddenMessage > $Env:temp\foo.txt
 cmd.exe /c copy /b "$Env:temp\foo.jpg" + "$Env:temp\foo.txt" "$Env:USERPROFILE\Desktop\$ImageName.jpg"
-
+copy $Env:temp\foo.txt $Env:temp\oo.txt
 rm $env:TEMP\foo.txt,$env:TEMP\foo.jpg -r -Force -ErrorAction SilentlyContinue
 
 
