@@ -1,2 +1,2 @@
 # pwsh
-PowerShell Scripts
+Just Some PowerShell Scripts
