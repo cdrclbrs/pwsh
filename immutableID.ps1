@@ -1,4 +1,14 @@
- Import-Module ActiveDirectory
+# Title: Immutable ID checker
+# Author: cdrc lbrs
+# Contact: [email protected]
+# Date Created: 2023-11-16
+# Date Modified: 2023-11-16
+# Version: 1.0
+# Synopsis: This script compare immutable ID and propose and update if mismatch detected
+# Description: It takes as entry a user principal name and then looks for msDSconsistencyGUID on the on-prem AD, the it converts it to base64 format and compare it to the same UPN synced on the CLoud (Azure). If a mismatch is detected it propose to copy the new value from on-prem to cloud
+# Disclaimer: This script is provided as-is, with no warranties or guarantees.
+
+Import-Module ActiveDirectory
 Import-Module AzureAD
 #Connect-AzureAD
 
