@@ -1,1 +1,7 @@
-(netsh wlan show profiles) | Select-String "\:(.+)$" | %{$name=$_.Matches.Groups[1].Value.Trim(); $_} | % {(netsh wlan show profile name="$name" key=clear)} | Select-String -Pattern "Key Content\W+\:(.+)$","Contenu de la cl\W+\:(.+)$" | %{$pass=$_.Matches.Groups[1].Value.Trim(); $_} | %{[PSCustomObject]@{ SSID=$name;PASSWORD=$pass }} | Format-Table -AutoSize
+$deviceName = [System.Net.Dns]::GetHostName()
+$userName = [System.Environment]::UserName
+$ipAddress = Test-Connection -ComputerName $deviceName -Count 1 | Select -ExpandProperty IPV4Address
+$info = "Device Name: $deviceName`r`nUser Name: $userName`r`nIP Address: $ipAddress"
+$tempFile = [System.IO.Path]::GetTempFileName()
+Set-Content -Path $tempFile -Value $info
+notepad $tempFile
