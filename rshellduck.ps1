@@ -1,4 +1,3 @@
-# Commande à exécuter dans la nouvelle fenêtre PowerShell
 $command = @"
 \$Host.UI.RawUI.BackgroundColor = "Black"
 \Host.UI.RawUI.ForegroundColor = "Green"
