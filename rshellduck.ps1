@@ -1,7 +1,31 @@
-$deviceName = [System.Net.Dns]::GetHostName()
-$userName = [System.Environment]::UserName
-$ipAddress = Test-Connection -ComputerName $deviceName -Count 1 | Select -ExpandProperty IPV4Address
-$info = "Device Name: $deviceName`r`nUser Name: $userName`r`nIP Address: $ipAddress"
-$tempFile = [System.IO.Path]::GetTempFileName()
-Set-Content -Path $tempFile -Value $info
-notepad $tempFile
+$Host.UI.RawUI.BackgroundColor = "Black"
+$Host.UI.RawUI.ForegroundColor = "Green"
+Clear-Host
+$mess = @"
+Ne laissez pas votre ordinateur non verouillé!
+███████████████████████████
+███████▀▀▀░░░░░░░▀▀▀███████
+████▀░░░░░░░░░░░░░░░░░▀████
+███│░░░░░░░░░░░░░░░░░░░│███
+██▌│░░░░░░░░░░░░░░░░░░░│▐██
+██░└┐░░░░░░░░░░░░░░░░░┌┘░██
+██░░└┐░░░░░░░░░░░░░░░┌┘░░██
+██░░┌┘▄▄▄▄▄░░░░░▄▄▄▄▄└┐░░██
+██▌░│██████▌░░░▐██████│░▐██
+███░│▐███▀▀░░▄░░▀▀███▌│░███
+██▀─┘░░░░░░░▐█▌░░░░░░░└─▀██
+██▄░░░▄▄▄▓░░▀█▀░░▓▄▄▄░░░▄██
+████▄─┘██▌░░░░░░░▐██└─▄████
+█████░░▐█─┬┬┬┬┬┬┬─█▌░░█████
+████▌░░░▀┬┼┼┼┼┼┼┼┬▀░░░▐████
+█████▄░░░└┴┴┴┴┴┴┴┘░░░▄█████
+███████▄░░░░░░░░░░░▄███████
+██████████▄▄▄▄▄▄▄██████████
+███████████████████████████
+CYBERSECURITY IS ALWAYS 
+EXESSIVE, UNTIL It'S NOT
+ENOUGHT
+"@
+
+Write-Host $mess
+
