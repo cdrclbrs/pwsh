@@ -23,7 +23,6 @@ Write-Host 'Ne laissez pas votre ordinateur non verouillé!
 ██████████▄▄▄▄▄▄▄██████████
 ███████████████████████████
 
-
 █▀▀▀▀▀█ ▀▀▀█▄ ▀ █ █▀▀▀▀▀█
 █ ███ █  ▀▄█ █  ▀ █ ███ █
 █ ▀▀▀ █  ▄▀█▀▀▀ █ █ ▀▀▀ █
@@ -37,7 +36,6 @@ Write-Host 'Ne laissez pas votre ordinateur non verouillé!
 █ ███ █ █▀ ▀▄█ ▀▀██▀▀  ██
 █ ▀▀▀ █ ▄█ █▄█  ▀▀▄▄█▀███
 ▀▀▀▀▀▀▀ ▀▀ ▀▀▀ ▀▀    ▀  ▀
-
 '
 "@
 
