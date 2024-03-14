@@ -22,9 +22,7 @@ Ne laissez pas votre ordinateur non verouillé!
 ███████▄░░░░░░░░░░░▄███████
 ██████████▄▄▄▄▄▄▄██████████
 ███████████████████████████
-CYBERSECURITY IS ALWAYS 
-EXESSIVE, UNTIL It'S NOT
-ENOUGHT
+Cybersecurity is always excessive, until it's not enough.
 "@
 
 Write-Host $mess
